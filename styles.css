@@ -1,0 +1,69 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+  max-width: 400px;
+}
+
+h1 {
+  color: #333;
+}
+
+.btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  margin: 10px 0;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
+
+.btn.secondary {
+  background: #6c757d;
+}
+
+.btn.secondary:hover {
+  background: #5a6268;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.song {
+  background: white;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.song.ticked {
+  background: #28a745;
+  color: white;
+  text-decoration: line-through;
+}
+
+.hidden {
+  display: none;
+}
