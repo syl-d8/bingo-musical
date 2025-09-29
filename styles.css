@@ -1,86 +1,87 @@
+/* ===== Fondo de la página ===== */
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  font-family: 'Comic Neue', cursive, sans-serif; /* Nueva fuente divertida */
+  background: url("background.jpg") center center no-repeat; /* Centrar imagen */
+  background-size: contain; /* No estira la imagen */
+  background-attachment: fixed;
+  background-color: #f9f9f9; /* Color de respaldo */
+  position: relative;
   min-height: 100vh;
-  position: relative;
 }
 
-.background-image {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 300px; /* ajusta el tamaño que quieras */
-  opacity: 0.3; /* la haces transparente para no distraer */
-  z-index: 0; /* se queda detrás del contenido */
-  pointer-events: none; /* no bloquea clics */
+/* Fondo semitransparente sobre la imagen */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.6); /* Transparencia sobre la imagen */
+  z-index: 0;
 }
 
-.container {
+/* ===== Contenedor principal ===== */
+#card {
   position: relative;
-  z-index: 1;
-  text-align: center;
-  padding: 20px;
+  z-index: 1; /* Encima de la capa de fondo */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+  gap: 10px;
   max-width: 400px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 12px;
-  margin-top: 20px;
+  margin: 20px auto;
+  padding: 20px;
 }
 
-
-h1 {
-  color: #333;
+/* ===== Estilo de cada canción ===== */
+.song {
+  background: white; /* Fondo blanco para que se lea bien */
+  padding: 12px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
-.btn {
-  background: #007bff;
+.song:hover {
+  transform: scale(1.05);
+}
+
+/* Canción seleccionada (tachada) */
+.song.ticked {
+  background: #ffe066; /* Amarillo suave */
+  text-decoration: line-through;
+  color: #555;
+}
+
+/* ===== Botones ===== */
+button {
+  background: #ff6f61;
   color: white;
-  border: none;
   padding: 12px 20px;
-  margin: 10px 0;
+  border: none;
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
+  margin: 10px;
+  z-index: 1;
+  position: relative;
+  font-family: 'Comic Neue', cursive, sans-serif;
+  transition: background 0.3s ease;
 }
 
-.btn:hover {
-  background: #0056b3;
+button:hover {
+  background: #ff4a3d;
 }
 
-.btn.secondary {
-  background: #6c757d;
+/* Centrar botones */
+#generate-card,
+#clear-card {
+  display: inline-block;
+  text-align: center;
 }
 
-.btn.secondary:hover {
-  background: #5a6268;
-}
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.song {
-  background: white;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s, color 0.3s;
-}
-
-.song.ticked {
-  background: #28a745;
-  color: white;
-  text-decoration: line-through;
-}
-
-.hidden {
-  display: none;
-}
