@@ -1,6 +1,7 @@
 body {
   font-family: Arial, sans-serif;
-  background: #f4f4f4;
+  background: url('pueblo.jpg') no-repeat center center fixed;
+  background-size: cover;
   margin: 0;
   padding: 0;
   display: flex;
@@ -8,6 +9,7 @@ body {
   align-items: flex-start;
   min-height: 100vh;
 }
+
 
 .container {
   text-align: center;
