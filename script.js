@@ -1,34 +1,32 @@
 const generateBtn = document.getElementById("generate-card");
-const clearBtn = document.getElementById("clear-card");
 const cardContainer = document.getElementById("card");
 
 const CARD_KEY = "bingo_card";
 let allSongs = [];
 
-// --- Cargar canciones desde songs.json ---
+// --- Cargar canciones ---
 async function loadSongs() {
   try {
     const response = await fetch("songs.json");
     allSongs = await response.json();
-    console.log("Canciones cargadas:", allSongs); // 👈 Ver qué trae
+    console.log("Canciones cargadas:", allSongs.length);
   } catch (error) {
     console.error("Error cargando canciones:", error);
     alert("Error al cargar la lista de canciones.");
   }
 }
 
-
-// --- Función para mezclar array ---
+// --- Mezclar array ---
 function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-// --- Guardar estado en localStorage ---
+// --- Guardar cartón en localStorage ---
 function saveCardState(card, ticks) {
   localStorage.setItem(CARD_KEY, JSON.stringify({ card, ticks }));
 }
 
-// --- Cargar estado desde localStorage ---
+// --- Cargar cartón desde localStorage ---
 function loadCardState() {
   const data = localStorage.getItem(CARD_KEY);
   return data ? JSON.parse(data) : null;
@@ -45,28 +43,27 @@ function generateCard() {
   renderCard(newCard, []);
   saveCardState(newCard, []);
   cardContainer.classList.remove("hidden");
-  clearBtn.classList.remove("hidden");
 }
 
-// --- Renderizar cartón en pantalla ---
+// --- Renderizar el cartón ---
 function renderCard(card, ticks) {
   cardContainer.innerHTML = "";
   card.forEach(song => {
     const songEl = document.createElement("div");
-    songEl.textContent = song.titulo;
+    songEl.textContent = song.titulo; // Ahora usa el campo titulo del JSON
     songEl.className = "song";
 
-    if (ticks.includes(song)) {
+    if (ticks.includes(song.titulo)) {
       songEl.classList.add("ticked");
     }
 
     songEl.addEventListener("click", () => {
       if (songEl.classList.contains("ticked")) {
         songEl.classList.remove("ticked");
-        ticks = ticks.filter(t => t !== song.id);
+        ticks = ticks.filter(t => t !== song.titulo);
       } else {
         songEl.classList.add("ticked");
-        ticks.push(song);
+        ticks.push(song.titulo);
       }
       saveCardState(card, ticks);
     });
@@ -74,17 +71,6 @@ function renderCard(card, ticks) {
     cardContainer.appendChild(songEl);
   });
 }
-
-// --- Resetear cartón ---
-function clearCard() {
-  localStorage.removeItem(CARD_KEY);
-  cardContainer.classList.add("hidden");
-  clearBtn.classList.add("hidden");
-}
-
-// --- Eventos ---
-generateBtn.addEventListener("click", generateCard);
-clearBtn.addEventListener("click", clearCard);
 
 // --- Inicialización ---
 window.addEventListener("DOMContentLoaded", async () => {
@@ -94,7 +80,9 @@ window.addEventListener("DOMContentLoaded", async () => {
   if (savedState) {
     renderCard(savedState.card, savedState.ticks);
     cardContainer.classList.remove("hidden");
-    clearBtn.classList.remove("hidden");
   }
 });
+
+generateBtn.addEventListener("click", generateCard);
+
 
