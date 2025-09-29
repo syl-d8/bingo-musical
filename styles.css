@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Comic Neue', cursive, sans-serif;
+  position: relative;
   background: url("background.jpg") center center no-repeat fixed; /* Imagen centrada y fija */
   background-size: cover; /* Que ocupe toda la pantalla */
   min-height: 100vh;
