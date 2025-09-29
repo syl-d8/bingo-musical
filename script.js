@@ -10,12 +10,13 @@ async function loadSongs() {
   try {
     const response = await fetch("songs.json");
     allSongs = await response.json();
-    console.log("Canciones cargadas:", allSongs.length);
+    console.log("Canciones cargadas:", allSongs); // 👈 Ver qué trae
   } catch (error) {
     console.error("Error cargando canciones:", error);
     alert("Error al cargar la lista de canciones.");
   }
 }
+
 
 // --- Función para mezclar array ---
 function shuffle(array) {
@@ -52,7 +53,7 @@ function renderCard(card, ticks) {
   cardContainer.innerHTML = "";
   card.forEach(song => {
     const songEl = document.createElement("div");
-    songEl.textContent = song;
+    songEl.textContent = song.titulo;
     songEl.className = "song";
 
     if (ticks.includes(song)) {
@@ -62,7 +63,7 @@ function renderCard(card, ticks) {
     songEl.addEventListener("click", () => {
       if (songEl.classList.contains("ticked")) {
         songEl.classList.remove("ticked");
-        ticks = ticks.filter(t => t !== song);
+        ticks = ticks.filter(t => t !== song.id);
       } else {
         songEl.classList.add("ticked");
         ticks.push(song);
@@ -96,3 +97,4 @@ window.addEventListener("DOMContentLoaded", async () => {
     clearBtn.classList.remove("hidden");
   }
 });
+
