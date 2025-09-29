@@ -15,13 +15,13 @@ body {
 /* Capa semitransparente sobre la imagen */
 body::before {
   content: "";
-  position: fixed; /* Ahora queda realmente detrás de todo */
+  position: fixed; /* Queda detrás de todo */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: rgba(255, 255, 255, 0.6); /* Transparencia */
-  z-index: 0; /* Se queda detrás */
+  z-index: 0; /* Fondo por debajo */
 }
 
 /* ===== CONTENEDOR PRINCIPAL ===== */
@@ -29,9 +29,13 @@ body::before {
   position: relative;
   z-index: 1; /* El contenido queda encima de la capa semitransparente */
   text-align: center; /* Todo centrado */
-  max-width: 500px;
-  width: 90%;
+  max-width: 600px; /* Más espacio para canciones */
+  width: 95%;
   margin: auto;
+  display: flex;
+  flex-direction: column; /* Orden en columna: título, canciones, botón */
+  justify-content: flex-start;
+  align-items: center;
 }
 
 /* ===== BOTÓN ===== */
@@ -43,44 +47,44 @@ button {
   border-radius: 10px;
   font-size: 18px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 20px; /* Espacio entre canciones y botón */
+  margin-bottom: 10px; /* Pequeño margen inferior */
   transition: background 0.3s ease;
   font-family: 'Comic Neue', cursive, sans-serif;
   display: inline-block;
 }
 
 button:hover {
-  background: #4c1c80; /* Un morado un poco más claro para hover */
+  background: #4c1c80; /* Morado más claro en hover */
 }
 
 /* ===== CARTÓN ===== */
 #card {
-  margin: 20px auto 0;
+  margin: 20px auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Siempre 2 columnas */
-  gap: 10px; /* Espacio entre canciones */
-  padding: 10px;
+  gap: 16px; /* Más espacio entre tarjetas */
+  padding: 20px;
   justify-items: center;
   width: 100%;
+  max-width: 600px; /* Evitar que se haga demasiado estrecho */
   box-sizing: border-box; /* Asegura que padding y ancho no se sumen */
 }
-
 
 /* ===== TARJETA DE CADA CANCIÓN ===== */
 .song {
   background: white;
-  padding: 10px;
+  padding: 14px;
   width: 100%; /* Ocupar todo el ancho de la celda */
-  max-width: 140px; /* Limitar el tamaño en pantallas grandes */
+  max-width: 160px; /* Un poco más grandes */
   text-align: center;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  font-size: 14px; /* Texto más pequeño en móvil */
+  font-size: 16px;
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.3s ease;
-  box-sizing: border-box; /* Evita que el padding se sume al ancho */
+  box-sizing: border-box; /* Evita que el padding sume al ancho */
 }
-
 
 .song:hover {
   transform: scale(1.05);
@@ -91,4 +95,18 @@ button:hover {
   background: #ffe066; /* Amarillo suave */
   text-decoration: line-through;
   color: #555;
+}
+
+/* ===== MEDIA QUERIES PARA MÓVILES MUY PEQUEÑOS ===== */
+@media (max-width: 400px) {
+  .song {
+    font-size: 14px;
+    padding: 10px;
+    max-width: 140px;
+  }
+
+  #card {
+    gap: 12px;
+    padding: 15px;
+  }
 }
