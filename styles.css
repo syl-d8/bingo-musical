@@ -28,12 +28,12 @@ body::before {
 .container {
   position: relative;
   z-index: 1; /* El contenido queda encima de la capa semitransparente */
-  text-align: center; /* Todo centrado */
-  max-width: 600px; /* Más espacio para canciones */
+  text-align: center;
+  max-width: 700px; /* Más espacio para canciones */
   width: 95%;
   margin: auto;
   display: flex;
-  flex-direction: column; /* Orden en columna: título, canciones, botón */
+  flex-direction: column; /* Orden: título, canciones, botón */
   justify-content: flex-start;
   align-items: center;
 }
@@ -42,13 +42,13 @@ body::before {
 button {
   background: #33105D; /* Morado */
   color: white;
-  padding: 14px 24px;
+  padding: 16px 28px;
   border: none;
   border-radius: 10px;
-  font-size: 18px;
+  font-size: 20px;
   cursor: pointer;
-  margin-top: 20px; /* Espacio entre canciones y botón */
-  margin-bottom: 10px; /* Pequeño margen inferior */
+  margin-top: 20px;
+  margin-bottom: 10px;
   transition: background 0.3s ease;
   font-family: 'Comic Neue', cursive, sans-serif;
   display: inline-block;
@@ -63,27 +63,27 @@ button:hover {
   margin: 20px auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Siempre 2 columnas */
-  gap: 16px; /* Más espacio entre tarjetas */
-  padding: 20px;
+  gap: 20px; /* Más espacio entre tarjetas */
+  padding: 25px;
   justify-items: center;
   width: 100%;
-  max-width: 600px; /* Evitar que se haga demasiado estrecho */
-  box-sizing: border-box; /* Asegura que padding y ancho no se sumen */
+  max-width: 700px;
+  box-sizing: border-box;
 }
 
 /* ===== TARJETA DE CADA CANCIÓN ===== */
 .song {
   background: white;
-  padding: 14px;
-  width: 100%; /* Ocupar todo el ancho de la celda */
-  max-width: 160px; /* Un poco más grandes */
+  padding: 20px;
+  width: 100%;
+  max-width: 200px; /* Aumentado para que se vean más grandes */
   text-align: center;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  font-size: 16px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  font-size: 18px; /* Texto más grande */
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.3s ease;
-  box-sizing: border-box; /* Evita que el padding sume al ancho */
+  box-sizing: border-box;
 }
 
 .song:hover {
@@ -92,21 +92,22 @@ button:hover {
 
 /* Canción seleccionada (tachada) */
 .song.ticked {
-  background: #ffe066; /* Amarillo suave */
+  background: #ffe066;
   text-decoration: line-through;
   color: #555;
 }
 
-/* ===== MEDIA QUERIES PARA MÓVILES MUY PEQUEÑOS ===== */
+/* ===== MEDIA QUERIES PARA MÓVILES PEQUEÑOS ===== */
 @media (max-width: 400px) {
   .song {
-    font-size: 14px;
-    padding: 10px;
-    max-width: 140px;
+    font-size: 16px;
+    padding: 16px;
+    max-width: 160px; /* Ajuste en móviles */
   }
 
   #card {
-    gap: 12px;
+    gap: 16px;
     padding: 15px;
   }
 }
+
